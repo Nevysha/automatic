@@ -13,6 +13,7 @@ import piexif
 import piexif.helper
 import gradio as gr
 from starlette.responses import FileResponse
+from starlette.staticfiles import StaticFiles
 
 from modules import errors, shared, sd_samplers, deepbooru, sd_hijack, images, scripts, ui, postprocessing
 from modules.api import models
@@ -110,11 +111,15 @@ class Api:
                     user, password = line.split(":")
                     self.credentials[user.replace('"', '').strip()] = password.replace('"', '').strip()
 
-        if shared.cmd_opts.ui_dev:
-            @app.get("/cozy-nest-dev/:path")
-            async def cozy_nest_dev(request):
-                path = request.path_params['path']
-                return FileResponse(f"extebsions-builtin/cozy-nest/{path}")
+        # if shared.cmd_opts.ui_dev:
+        #     from pathlib import Path
+        #     sdnext_path = Path(__file__).parent.parent.parent
+        #     cozy_nest_path = Path(sdnext_path, "extensions-builtin/cozy-nest")
+        #     app.mount(
+        #         "/cozy-nest-dev/",
+        #         StaticFiles(directory=f"{str(cozy_nest_path)}"),
+        #         name="cozy-nest-client",
+        #     )
 
 
         self.router = APIRouter()

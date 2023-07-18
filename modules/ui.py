@@ -1174,9 +1174,10 @@ def html_head():
 
     head = ''
     if modules.shared.cmd_opts.ui_dev:
-        head += '<script type="module" src="cozy-nest-dev/src/refreshRuntime.ts"></script>\n'
-        head += '<script type="module" src="cozy-nest-dev/@vite/client"></script>\n'
-        head += '<script type="module" src="cozy-nest-dev/src/main.tsx"></script>\n'
+        # URL to vite server @see vite.config
+        head += '<script type="module" src="http://127.0.0.1:5173/cozy-nest-dev/src/refreshRuntime.ts"></script>\n'
+        head += '<script type="module" src="http://127.0.0.1:5173/cozy-nest-dev/@vite/client"></script>\n'
+        head += '<script type="module" src="http://127.0.0.1:5173/cozy-nest-dev/src/main.tsx"></script>\n'
 
     head += f'<script type="text/javascript" src="{webpath(script_js)}"></script>\n'
     added = []
