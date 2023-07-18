@@ -1171,7 +1171,14 @@ def webpath(fn):
 
 def html_head():
     script_js = os.path.join(script_path, "javascript", "script.js")
-    head = f'<script type="text/javascript" src="{webpath(script_js)}"></script>\n'
+
+    head = ''
+    if modules.shared.cmd_opts.ui_dev:
+        head += '<script type="module" src="cozy-nest-dev/src/refreshRuntime.ts"></script>\n'
+        head += '<script type="module" src="cozy-nest-dev/@vite/client"></script>\n'
+        head += '<script type="module" src="cozy-nest-dev/src/main.tsx"></script>\n'
+
+    head += f'<script type="text/javascript" src="{webpath(script_js)}"></script>\n'
     added = []
     for script in modules.scripts.list_scripts("javascript", ".js"):
         if script.path == script_js:
