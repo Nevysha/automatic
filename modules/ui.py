@@ -1180,6 +1180,7 @@ def html_head():
         head += '<script type="module" src="http://127.0.0.1:5173/cozy-nest-dev/src/main.tsx"></script>\n'
 
     head += f'<script type="text/javascript" src="{webpath(script_js)}"></script>\n'
+
     added = []
     for script in modules.scripts.list_scripts("javascript", ".js"):
         if script.path == script_js:
