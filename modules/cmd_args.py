@@ -48,6 +48,8 @@ group.add_argument('--subpath', type=str, help='Customize the URL subpath for us
 group.add_argument('--backend', type=str, choices=['original', 'diffusers'], required=False, help='force model pipeline type')
 
 group.add_argument('--ui-dev', default=False, action='store_true', help="Run UI in development mode, default: %(default)s")
+group.add_argument('--cozy-ui', default=False, action='store_true', help="Run UI in development mode, default: %(default)s")
+
 
 # removed args are added here as hidden in fixed format for compatbility reasons
 group.add_argument("-f", action='store_true', help=argparse.SUPPRESS)  # allows running as root; implemented outside of webui

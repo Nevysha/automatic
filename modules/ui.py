@@ -1209,11 +1209,17 @@ def html_css():
     def stylesheet(fn):
         added.append(fn)
         return f'<link rel="stylesheet" property="stylesheet" href="{webpath(fn)}">'
+
     head = stylesheet('javascript/style.css')
+
+    # if not modules.shared.cmd_opts.ui_dev and not modules.shared.cmd_opts.cozy_ui:
+    #     head += stylesheet('javascript/style.css')
+
     for cssfile in modules.scripts.list_files_with_name("style.css"):
         if not os.path.isfile(cssfile):
             continue
         head += stylesheet(cssfile)
+
     if opts.gradio_theme == 'black-orange':
         head += stylesheet(os.path.join(script_path, "javascript", "black-orange.css"))
     if os.path.exists(os.path.join(data_path, "user.css")):
